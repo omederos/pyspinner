@@ -33,7 +33,7 @@ How to use it
 Running tests
 -------------
 
-.. code-block: bash
+.. code-block:: bash
 
     $ python spinning-tests.py
     ....
