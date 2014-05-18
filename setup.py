@@ -2,7 +2,7 @@ from distutils.core import setup
 import spinning
 
 setup(
-    name='PySpinner',
+    name='pyspinner',
     version=spinning.__version__,
     description='A simple spin-syntax parser for Python',
     author='Oscar Mederos',
