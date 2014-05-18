@@ -46,11 +46,11 @@ Features
 --------
 
 - Supports nested syntax.
-- Supports custom opening, closing and separator characters by using the `override_params` function.
+- Supports custom opening, closing and separator characters by using the ``override_params`` function.
 
 TO-DO
 -----
 
-- Allow optional phrases: `The quick{ red|} fox...`
-- Allow special characters `{,|,}` inside text by escaping them.
+- Allow optional phrases: ``The quick{ red|} fox...``
+- Allow special characters ``{,|,}`` inside text by escaping them.
 - Write more tests
