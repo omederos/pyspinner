@@ -8,7 +8,7 @@ setup(
     author='Oscar Mederos',
     author_email='omederos@gmail.com',
     url='http://github.com/omederos/pyspinner',
-    packages=['spinning',],
+    packages=['spinning', ],
     license='MIT License',
-    long_description=open('README.txt').read(),
+    long_description=open('README.rst').read(),
 )
