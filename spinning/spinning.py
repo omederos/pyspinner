@@ -2,17 +2,26 @@ import random
 import re
 import itertools
 
-SEPARATOR_CHAR = '|'
-CLOSING_CHAR = '}'
-OPENING_CHAR = '{'
+char_separator = '|'
+char_closing = '}'
+char_opening = '{'
 
 
 def override_params(opening_char='{', closing_char='}', separator_char='|'):
-    global SEPARATOR_CHAR, OPENING_CHAR, CLOSING_CHAR
+    """
+    Override some character settings
 
-    SEPARATOR_CHAR = separator_char
-    OPENING_CHAR = opening_char
-    CLOSING_CHAR = closing_char
+    @type opening_char: str
+    @param opening_char: Opening character. Default: '{'
+    @type closing_char: str
+    @param closing_char: Closing character. Default: '}'
+    @type separator_char: str
+    @param separator_char: Separator char. Default: '|'
+    """
+    global char_separator, char_opening, char_closing
+    char_separator = separator_char
+    char_opening = opening_char
+    char_closing = closing_char
 
 
 def unique(text):
@@ -55,9 +64,9 @@ def _choices(text, randomized=True):
     if text:
         # regex pattern that will be used for splitting
         pattern = r'{0}|{1}|{2}'.format(
-            re.escape(OPENING_CHAR),
-            re.escape(CLOSING_CHAR),
-            re.escape(SEPARATOR_CHAR)
+            re.escape(char_opening),
+            re.escape(char_closing),
+            re.escape(char_separator)
         )
 
         choices = [x for x in re.split(pattern, text) if x]
@@ -78,7 +87,7 @@ def _all_unique_texts(text, final):
     @param final: An empty list where all the unique texts will be stored
     @return: Nothing. The result will be in the 'final' list
     """
-    if not OPENING_CHAR in text:
+    if not char_opening in text:
         if not text in final:
             final.append(text)
         return
@@ -86,16 +95,16 @@ def _all_unique_texts(text, final):
     stack = []
     indexes = []
     for i, c in enumerate(text):
-        if c == CLOSING_CHAR:
-            if stack[-1] == OPENING_CHAR:
+        if c == char_closing:
+            if stack[-1] == char_opening:
                 start_index = indexes.pop()
-                substring = '' if i == start_index + 1 else text[start_index:i+1]
+                substring = '' if i == start_index + 1 else text[start_index:i + 1]
                 # get some random combination
                 combination = next(_choices(substring))
                 new_text = text.replace(substring, combination)
                 _all_unique_texts(new_text, final)
                 return
-        elif c == OPENING_CHAR:
+        elif c == char_opening:
             stack.append(c)
             indexes.append(i)
 
@@ -113,14 +122,14 @@ def _is_correct(text):
     error = ''
     stack = []
     for i, c in enumerate(text):
-        if c == OPENING_CHAR:
+        if c == char_opening:
             stack.append(c)
-        elif c == CLOSING_CHAR:
+        elif c == char_closing:
             if stack.count == 0:
                 error = 'Syntax incorrect. Found "}" before "{"'
                 break
             last_char = stack.pop()
-            if last_char != OPENING_CHAR:
+            if last_char != char_opening:
                 error = 'Syntax incorrect. Found "}" before "{"'
                 break
     if len(stack) > 0:
