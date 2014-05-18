@@ -31,7 +31,7 @@ def unique(text):
     """
 
     # check if the text is correct
-    correct, error = is_correct(text)
+    correct, error = _is_correct(text)
     if not correct:
         raise Exception(error)
 
@@ -100,7 +100,7 @@ def _all_unique_texts(text, final):
             indexes.append(i)
 
 
-def is_correct(text):
+def _is_correct(text):
     """
     Check if the specified text has a correct spin syntax
 
@@ -125,4 +125,4 @@ def is_correct(text):
                 break
     if len(stack) > 0:
         error = 'Syntax incorrect. Some "{" were not closed'
-    return error == '', error
+    return not error, error
