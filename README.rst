@@ -1,8 +1,17 @@
 pyspinner
 =========
 
-.. image:: https://badge.fury.io/py/pyspinner.png
+.. image:: https://pypip.in/version/pyspinner/badge.png
     :target: https://pypi.python.org/pypi/pyspinner
+    :alt: Latest Version
+
+.. image:: https://pypip.in/download/pyspinner/badge.png
+    :target: https://pypi.python.org/pypi/pyspinner
+
+.. image:: https://pypip.in/license/pyspinner/badge.png
+    :target: https://pypi.python.org/pypi/pyspinner
+    :alt: License
+
 
 pyspinner is simple library for parsing text that uses spin-syntax.
 
